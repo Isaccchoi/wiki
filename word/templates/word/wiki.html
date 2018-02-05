@@ -1,0 +1,37 @@
+{% load link_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ word.word }}</h1>
+{% autoescape off %}
+    <p>{{ description|linebreaksbr }}</p>
+{% endautoescape %}
+
+{% if relation_word_list%}
+    <hr/>
+    <h2>연관단어</h2>
+    <ul>
+        {% for relation_word in relation_word_list %}
+            <li><a href="{{ relation_word.get_absolute_url }}">{{ relation_word }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+{% if relation_word_list %}
+    <hr/>
+    <h2>추천 단어</h2>
+    <ul>
+        {% for rec_word in recommend_word %}
+            <li><a href="{{ rec_word.get_absolute_url }}">{{ rec_word }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>
